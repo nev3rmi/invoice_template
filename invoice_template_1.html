@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice {{ invoice_number }}</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.6;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            color: #000;
+            display: block;
+        }
+        .invoice-box {
+            width: 210mm;
+            margin-top: 20mm;
+            margin-bottom: 20mm;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 10mm;
+            padding-bottom: 10mm;
+            padding-left: 10mm;
+            padding-right: 10mm;
+            background-color: #f2f2f2;
+            display: block;
+            page-break-after: avoid;
+            page-break-before: avoid;
+            zoom: 1;
+        }
+        h2 {
+            font-weight: bold;
+            font-size: 24pt;
+            text-align: center;
+            text-decoration: none;
+            text-indent: 0;
+            color: #333;
+            background-color: transparent;
+        }
+        table {
+            width: 100%;
+            line-height: inherit;
+            text-align: left;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            vertical-align: top;
+            white-space: nowrap;
+        }
+        th {
+            font-weight: bold;
+            background-color: #eee;
+            text-align: left;
+            font-size: 10pt;
+        }
+        td {
+            vertical-align: middle;
+        }
+        .total {
+            font-size: 14pt;
+            font-weight: bold;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-box">
+        <h2>Invoice {{ invoice_number }}</h2>
+        <table>
+            <tr class="heading">
+                <td colspan="2">Company Info:</td>
+                <td colspan="2">Customer Info:</td>
+            </tr>
+            <tr class="details">
+                <td colspan="2">
+                    {{ company.name }}<br>
+                    {{ company.address }}<br>
+                    {{ company.city }}, {{ company.state }} {{ company.zip }}
+                </td>
+                <td colspan="2">
+                    {{ customer.name }}<br>
+                    {{ customer.email }}
+                </td>
+            </tr>
+            <tr class="heading">
+                <td>Payment Method:</td>
+                <td>{{ payment_method }}</td>
+                <td>Invoice #: {{ invoice_number }}</td>
+                <td>Date: {{ created }}</td>
+            </tr>
+            <tr class="heading">
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Total Price</th>
+            </tr>
+            {% for item in items %}
+            <tr class="item">
+                <td>{{ item.description }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.unit_price }}</td>
+                <td>{{ item.total_price }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="3" class="total">Total:</td>
+                <td class="total">{{ total }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
