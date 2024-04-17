@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice {{ data.invoice_number }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .invoice-box { max-width: 800px; margin: auto; padding: 30px; border: 1px solid #eee; box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); font-size: 16px; line-height: 24px; color: #555; }
+        .heading { background: #eee; border-bottom: 1px solid #ddd; font-weight: bold; padding: 5px; }
+        .details td { padding: 5px; }
+        .total { font-weight: bold; }
+        table { width: 100%; }
+    </style>
+</head>
+<body>
+    <div class="invoice-box">
+        <h2>Invoice</h2>
+        <table>
+            <tr>
+                <td colspan="2">
+                    Invoice #: {{ data.invoice_number }}<br>
+                    Created: {{ data.created }}<br>
+                    Due: {{ data.due }}
+                </td>
+            </tr>
+            <tr class="heading">
+                <td>Company Info:</td>
+                <td>Customer Info:</td>
+            </tr>
+            <tr class="details">
+                <td>
+                    {{ data.company.name }}<br>
+                    {{ data.company.address }}<br>
+                    {{ data.company.city }}, {{ data.company.state }} {{ data.company.zip }}
+                </td>
+                <td>
+                    {{ data.customer.name }}<br>
+                    {{ data.customer.email }}
+                </td>
+            </tr>
+            <tr class="heading">
+                <td>Payment Method:</td>
+                <td>{{ data.payment_method }}</td>
+            </tr>
+            <tr class="heading">
+                <td>Item</td>
+                <td>Price</td>
+            </tr>
+            {% for item in data.items %}
+            <tr class="item">
+                <td>{{ item.description }}</td>
+                <td>{{ item.price }}</td>
+            </tr>
+            {% endfor %}
+            <tr class="total">
+                <td></td>
+                <td>Total: {{ data.total }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
