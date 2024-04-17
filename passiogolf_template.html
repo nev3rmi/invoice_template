@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Invoice {{ data.invoice_number }}</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.6;
+            color: #000;
+            background-color: #fff;
+        }
+        .invoice-box {
+            width: 100%;
+            margin: 0;
+            padding: 20px;
+            background-color: #f2f2f2;
+            zoom: 1;
+        }
+        h2 {
+            font-weight: bold;
+            font-size: 18pt;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+            font-size: 10pt;
+        }
+        th {
+            background-color: #eee;
+            font-weight: bold;
+        }
+        .text-right {
+            text-align: right;
+        }
+        .item-row {
+            background-color: #fff;
+        }
+        .total-row {
+            font-size: 14pt;
+            font-weight: bold;
+            background-color: #eee;
+        }
+        .total-amount {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-box">
+        <table>
+            <tr>
+                <th colspan="4">
+                    Invoice {{ data.invoice_number }}<br>
+                    Date: {{ data.created }}
+                </th>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    From: {{ data.company.name }}<br>
+                    {{ data.company.address }}<br>
+                    {{ data.company.city }}, {{ data.company.state }} {{ data.company.zip }}
+                </td>
+                <td colspan="2">
+                    To: {{ data.customer.name }}<br>
+                    {{ data.customer.email }}
+                </td>
+            </tr>
+            <tr class="heading">
+                <th>Description</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Total Price</th>
+            </tr>
+            {% for item in data.items %}
+            <tr class="item-row">
+                <td>{{ item.description }}</td>
+                <td>{{ item.quantity }}</td>
+                <td class="text-right">{{ item.unit_price }}</td>
+                <td class="text-right">{{ item.total_price }}</td>
+            </tr>
+            {% endfor %}
+            <tr class="total-row">
+                <td colspan="3">Total:</td>
+                <td class="total-amount">{{ data.total }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
