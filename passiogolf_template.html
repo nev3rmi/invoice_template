@@ -1,100 +1,215 @@
 <!DOCTYPE html>
 <html>
-<head>
+
+  <head>
     <meta charset="utf-8">
     <title>Invoice {{ invoice_number }}</title>
     <style>
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 12pt;
-            line-height: 1.6;
-            color: #000;
-            background-color: #fff;
-        }
-        .invoice-box {
-            width: 100%;
-            margin: 0;
-            padding: 20px;
-            background-color: #f2f2f2;
-            zoom: 1;
-        }
-        h2 {
-            font-weight: bold;
-            font-size: 18pt;
-            text-align: center;
-            text-decoration: none;
-            color: #333;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #fff;
-        }
-        th, td {
-            padding: 8px;
-            border: 1px solid #ddd;
-            text-align: left;
-            font-size: 10pt;
-        }
-        th {
-            background-color: #eee;
-            font-weight: bold;
-        }
-        .text-right {
-            text-align: right;
-        }
-        .item-row {
-            background-color: #fff;
-        }
-        .total-row {
-            font-size: 14pt;
-            font-weight: bold;
-            background-color: #eee;
-        }
-        .total-amount {
-            text-align: right;
-        }
+      body {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 12pt;
+        line-height: 1.6;
+        color: #000;
+        background-color: #fff;
+      }
+
+      .invoice-box {
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+        background-color: #f2f2f2;
+        zoom: 1;
+      }
+
+      h2 {
+        font-weight: bold;
+        font-size: 18pt;
+        text-align: center;
+        text-decoration: none;
+        color: #333;
+      }
+
+      h3 {
+        font-weight: bold;
+        font-size: 12pt;
+        text-align: center;
+        text-decoration: none;
+        color: #333;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+      }
+
+      th,
+      td {
+        padding: 8px;
+        border: 1px solid #ddd;
+        text-align: left;
+        font-size: 10pt;
+      }
+
+      th {
+        background-color: #eee;
+        font-weight: bold;
+      }
+
+      .text-right {
+        text-align: right;
+      }
+
+      .item-row {
+        background-color: #fff;
+      }
+
+      .total-row {
+        font-size: 14pt;
+        font-weight: bold;
+        background-color: #eee;
+      }
+
+      .total-amount {
+        text-align: right;
+      }
+
+      .remarks {
+        margin-top: 20px;
+      }
+
     </style>
-</head>
-<body>
+  </head>
+
+  <body>
     <div class="invoice-box">
-        <table>
-            <tr>
-                <th colspan="4">
-                    Invoice {{ invoice_number }}<br>
-                    Date: {{ created }}
-                </th>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    From: {{ company.name }}<br>
-                    {{ company.address }}<br>
-                    {{ company.city }}, {{ company.state }} {{ company.zip }}
-                </td>
-                <td colspan="2">
-                    To: {{ customer.name }}<br>
-                    {{ customer.email }}
-                </td>
-            </tr>
-            <tr class="heading">
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Unit Price</th>
-                <th>Total Price</th>
-            </tr>
-            {% for item in items %}
-            <tr class="item-row">
-                <td>{{ item.description }}</td>
-                <td>{{ item.quantity }}</td>
-                <td class="text-right">{{ item.unit_price }}</td>
-                <td class="text-right">{{ item.total_price }}</td>
-            </tr>
-            {% endfor %}
-            <tr class="total-row">
-                <td colspan="3">Total:</td>
-                <td class="total-amount">{{ total }}</td>
-            </tr>
-        </table>
+      <table>
+        <thead>
+          <tr>
+            <th colspan="8">
+              <h2>
+                {{ title }}
+              </h2>
+              <h3>{{ booking_id }}
+              </h3>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="8">Invoice: {{ invoice_number }}<br>Date: {{ created }}</td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              From: {{ from.name }}<br>
+              Mobile: {{ from.mobile }}<br>
+              Email: {{ from.email }}<br>
+              Address: {{ from.address }}, {{ from.city }}, {{ from.state }} {{ from.zip }}
+            </td>
+            <td colspan="4">
+              To: {{ to.name }}<br>
+              Mobile: {{ to.mobile }}<br>
+              Email: {{ to.email }}<br>
+              Address: {{ to.address }}, {{ to.city }}, {{ to.state }} {{ to.zip }}
+            </td>
+          </tr>
+          <tr class="heading">
+            <th>#</th>
+            <th>Description</th>
+            <th>Date and Time</th>
+            <th>Group</th>
+            <th>Quantity</th>
+            <th>Unit</th>
+            <th>Unit Price (VND)</th>
+            <th>Subtotal</th>
+          </tr>
+          {% for item in items %}
+          <tr class="item-row">
+            <td>{{ loop.index }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.date_time }}</td>
+            <td>{{ item.group }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.unit }}</td>
+            <td>{{ item.unit_price }}</td>
+            <td>{{ item.total_price }}</td>
+          </tr>
+          {% endfor %}
+          <!-- ... [other parts of the invoice] ... -->
+          <tr class="total-row">
+            <td colspan="6" rowspan="6" class="remarks">Remarks: <br>{{ remarks }}</td>
+            <th>Thành Tiền</th>
+            <td class="text-right">{{ thanh_tien }}</td>
+          </tr>
+          <tr class="total-row">
+            <th>Giảm Giá</th>
+            <td class="text-right">{{ giam_gia }}</td>
+          </tr>
+          <tr class="total-row">
+            <th>VAT</th>
+            <td class="text-right">{{ vat }}</td>
+          </tr>
+          <tr class="total-row">
+            <th>Deposit</th>
+            <td class="text-right">{{ deposit }}</td>
+          </tr>
+          <tr class="total-row">
+            <th>REMAINING</th>
+            <td class="text-right">{{ remaining }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-</body>
+    <div class="invoice-box">
+      <!-- Notice Period Section -->
+      <table>
+        <thead>
+          <tr class="heading">
+            <th>Notice Period</th>
+            <th>Cancellation Charge</th>
+            <th>Scan QR Code</th>
+          </tr>
+        </thead>
+        <!-- Implement these rows as needed -->
+        <tbody>
+          <tr>
+            <td>Notice Period</td>
+            <td>Cancellation Charge</td>
+            <td style="width: 200px;">
+              <table style="border-collapse: collapse;">
+                <tr>
+                  <td style="width: 50%; border: none;">
+                    <img style="width: 128px;" src="https://img.vietqr.io/image/{{ account.bank }}-{{ account.no }}-evpMRRX.jpg?amount={{ remaining }}&addInfo={{ booking_id }}-{{ from.name }}&accountName={{ account.name }}">
+                  </td>
+                  <td style="width: 50%; border: none;">
+                    <p>{{ account.name }}<br>
+                      {{ account.no }}<br>
+                      {{ account.bank }}<br>
+                      {{ account.description }}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <!-- Confirmation Section -->
+      <p>
+        <i>Gọi hotline để biết thêm thông tin chi tiết</i>
+      </p>
+
+
+      <table>
+        <tr rowspan="4" style="height:200px">
+          <td>Passiogolf Sign:</td>
+          <!-- Implement signing logic or image placeholder -->
+          <td>Customer Sign:</td>
+          <!-- Implement signing logic or image placeholder -->
+        </tr>
+      </table>
+    </div>
+  </body>
+
 </html>
