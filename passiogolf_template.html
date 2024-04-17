@@ -120,19 +120,22 @@
                     <div style="line-height: 1.4; font-size: 18pt; font-weight: bold;">
                         <span style="vertical-align: middle;">{{ title }}</span>
                     </div>
-                </th>
-                <th colspan="2" style="padding: 8px; text-align: center;border-left: none;border-right: none;">
-                    <img src="https://passiogolf.shop/wp-content/uploads/2023/03/PassioGolfVN-Logo-1-227x100@2x.png" alt="Passio Golf Logo" style="width: 72px;" />
-                </th>
-                <th colspan="3" style="padding: 8px; text-align: right;border-left: none;">
                     <div style="line-height: 1.0; font-size: 8pt; font-weight: bold;">
                         No.: #{{ booking_id }}
                     </div>
-                    <div style="line-height: 1.0; font-size: 8pt; font-weight: bold;">
-                        Ref: #{{ invoice_number }}
-                    </div>
+                </th>
+                <th colspan="2" style="padding: 8px; text-align: center;border-left: none;border-right: none;">
+                    <img src="{{logo.url}}" alt="{{logo.alt}}" style="width: 90px;" />
+                </th>
+                <th colspan="3" style="padding: 8px; text-align: right;border-left: none;">
                     <div style="line-height: 1.0; font-size: 8pt; font-weight: bold;">
                         Date: {{ created }}
+                    </div>
+                    <div style="line-height: 1.0; font-size: 8pt; font-weight: bold;">
+                        Hotline: {{ hotline }}
+                    </div>
+                    <div style="line-height: 1.0; font-size: 8pt; font-weight: bold;">
+                        Ref: #{{ invoice_number }}
                     </div>
                 </th>
             </tr>
