@@ -114,30 +114,30 @@
             </td>
           </tr>
           <tr class="heading">
-            <th style="width:32px">#</th>
+            <th style="width:48px">#</th>
             <th>Description</th>
             <th>Date and Time</th>
             <th>Group</th>
             <th>Quantity</th>
-            <th>Unit</th>
+            <th style="width:48px">Unit</th>
             <th>Unit Price (VND)</th>
             <th>Subtotal</th>
           </tr>
           {% for item in items %}
           <tr class="item-row">
-            <td style="width:32px">{{ loop.index }}</td>
+            <td style="width:48px">{{ loop.index }}</td>
             <td>{{ item.description }}</td>
             <td>{{ item.date_time }}</td>
             <td>{{ item.group }}</td>
             <td>{{ item.quantity }}</td>
-            <td>{{ item.unit }}</td>
+            <td style="width:48px">{{ item.unit }}</td>
             <td>{{ item.unit_price }} {{currency}}</td>
             <td>{{ item.total_price }} {{currency}}</td>
           </tr>
           {% endfor %}
           <!-- ... [other parts of the invoice] ... -->
           <tr class="total-row">
-            <td rowspan="5" class="remarks">
+            <td colspan="4" rowspan="5" class="remarks">
               <b>Remarks: </b><br><i>{{ remarks }}</i>
             </td>
             <th>Thành Tiền</th>
