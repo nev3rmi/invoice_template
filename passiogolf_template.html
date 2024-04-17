@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Invoice {{ data.invoice_number }}</title>
+    <title>Invoice {{ invoice_number }}</title>
     <style>
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -61,19 +61,19 @@
         <table>
             <tr>
                 <th colspan="4">
-                    Invoice {{ data.invoice_number }}<br>
-                    Date: {{ data.created }}
+                    Invoice {{ invoice_number }}<br>
+                    Date: {{ created }}
                 </th>
             </tr>
             <tr>
                 <td colspan="2">
-                    From: {{ data.company.name }}<br>
-                    {{ data.company.address }}<br>
-                    {{ data.company.city }}, {{ data.company.state }} {{ data.company.zip }}
+                    From: {{ company.name }}<br>
+                    {{ company.address }}<br>
+                    {{ company.city }}, {{ company.state }} {{ company.zip }}
                 </td>
                 <td colspan="2">
-                    To: {{ data.customer.name }}<br>
-                    {{ data.customer.email }}
+                    To: {{ customer.name }}<br>
+                    {{ customer.email }}
                 </td>
             </tr>
             <tr class="heading">
@@ -82,7 +82,7 @@
                 <th>Unit Price</th>
                 <th>Total Price</th>
             </tr>
-            {% for item in data.items %}
+            {% for item in items %}
             <tr class="item-row">
                 <td>{{ item.description }}</td>
                 <td>{{ item.quantity }}</td>
@@ -92,7 +92,7 @@
             {% endfor %}
             <tr class="total-row">
                 <td colspan="3">Total:</td>
-                <td class="total-amount">{{ data.total }}</td>
+                <td class="total-amount">{{ total }}</td>
             </tr>
         </table>
     </div>
