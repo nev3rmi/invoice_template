@@ -160,56 +160,7 @@
         </tbody>
       </table>
     </div>
-    <div class="invoice-box">
-      <!-- Notice Period Section -->
-      <table>
-        <thead>
-          <tr class="heading">
-            <th>Notice Period</th>
-            <th>Cancellation Charge</th>
-            <th>Scan QR Code</th>
-          </tr>
-        </thead>
-        <!-- Implement these rows as needed -->
-        <tbody>
-          <tr>
-            <td>Notice Period</td>
-            <td>Cancellation Charge</td>
-            <td style="max-width: 200px;">
-              <table style="border-collapse: collapse;">
-                <tr>
-                  <td style="width: 40%; border: none;">
-                    <img style="width: 128px;" src="https://img.vietqr.io/image/{{ account.bankid }}-{{ account.no }}-evpMRRX.jpg?amount={{ remaining }}&addInfo={{ booking_id }}-{{ from.name }}&accountName={{ account.name }}">
-                  </td>
-                  <td style="width: 60%; border: none;">
-                    <p>{{ account.name }}<br>
-                      {{ account.no }}<br>
-                      {{ account.bank }}<br>
-                      {{ account.description }}</p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-
-      <!-- Confirmation Section -->
-      <p>
-        <i>Gọi hotline để biết thêm thông tin chi tiết</i>
-      </p>
-
-
-      <table>
-        <tr style="height:200px">
-          <td>Passiogolf Sign:</td>
-          <!-- Implement signing logic or image placeholder -->
-          <td>Customer Sign:</td>
-          <!-- Implement signing logic or image placeholder -->
-        </tr>
-      </table>
-    </div>
+    
   </body>
 
 </html>
