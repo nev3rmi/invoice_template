@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Invoice {{ invoice_number }}</title>
+    <style>
+      body {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 12pt;
+        line-height: 1.6;
+        color: #000;
+        background-color: #fff;
+      }
+
+      .invoice-box {
+        width: 100%;
+        margin-bottom: 0px;
+        padding: 20px;
+        background-color: #f2f2f2;
+        zoom: 1;
+      }
+
+      h2 {
+        font-weight: bold;
+        font-size: 18pt;
+        text-align: center;
+        text-decoration: none;
+        color: #333;
+      }
+
+      h3 {
+        font-weight: bold;
+        font-size: 12pt;
+        text-align: center;
+        text-decoration: none;
+        color: #333;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+      }
+
+      th,
+      td {
+        padding: 4px;
+        border: 1px solid #ddd;
+        text-align: left;
+        font-size: 10pt;
+      }
+
+      th {
+        background-color: #eee;
+        font-weight: bold;
+      }
+
+      .text-right {
+        text-align: right;
+      }
+
+      .item-row {
+        background-color: #fff;
+      }
+
+      .total-row {
+        font-size: 14pt;
+        font-weight: bold;
+        background-color: #eee;
+      }
+
+      .total-amount {
+        text-align: right;
+      }
+
+      .remarks {
+        margin-top: 20px;
+      }
+
+    </style>
+</head>
+<body>
+    <div class="invoice-box">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="8">
+                        <h2>{{ title }}</h2>
+                        <h3>{{ booking_id }}</h3>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="8">Invoice: {{ invoice_number }}<br/>Date: {{ created }}</td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        From: {{ from.name }}<br/>
+                        Mobile: {{ from.mobile }}<br/>
+                        Email: {{ from.email }}<br/>
+                        Address: {{ from.address }}, {{ from.city }}, {{ from.state }} {{ from.zip }}
+                    </td>
+                    <td colspan="4">
+                        To: {{ to.name }}<br/>
+                        Mobile: {{ to.mobile }}<br/>
+                        Email: {{ to.email }}<br/>
+                        Address: {{ to.address }}, {{ to.city }}, {{ to.state }} {{ to.zip }}
+                    </td>
+                </tr>
+                <tr class="heading">
+                    <th style="width:48px">#</th>
+                    <th>Description</th>
+                    <th>Date and Time</th>
+                    <th>Group</th>
+                    <th>Quantity</th>
+                    <th style="width:48px">Unit</th>
+                    <th>Unit Price (VND)</th>
+                    <th>Subtotal</th>
+                </tr>
+                {% for item in items %}
+                <tr class="item-row">
+                    <td style="width:48px">{{ loop.index }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.date_time }}</td>
+                    <td>{{ item.group }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td style="width:48px">{{ item.unit }}</td>
+                    <td>{{ item.unit_price }}</td>
+                    <td>{{ item.total_price }}</td>
+                </tr>
+                {% endfor %}
+                <tr class="total-row">
+                    <td colspan="6" rowspan="5" class="remarks">
+                        <b>Remarks: </b><br/><i>{{ remarks }}</i>
+                    </td>
+                    <th>Grand Total</th>
+                    <td class="text-right">{{ grand_total }}</td>
+                </tr>
+                <tr class="total-row">
+                    <th>Discount</th>
+                    <td class="text-right">{{ discount }}</td>
+                </tr>
+                <tr class="total-row">
+                    <th>VAT</th>
+                    <td class="text-right">{{ vat }}</td>
+                </tr>
+                <tr class="total-row">
+                    <th>Deposit</th>
+                    <td class="text-right">{{ deposit }}</td>
+                </tr>
+                <tr class="total-row">
+                    <th>REMAINING</th>
+                    <td class="text-right">{{ remaining }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="invoice-box">
+        <table>
+            <thead>
+                <tr class="heading">
+                    <th>Notice Period</th>
+                    <th>Cancellation Charge</th>
+                    <th>Scan QR Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ notice_period }}</td>
+                    <td>{{ cancellation_charge }}</td>
+                    <td>
+                        <img style="width:128px;height:auto;" src="https://img.vietqr.io/image/{{ bank_id }}-{{ account_no }}-evpMRRX.jpg?amount={{ remaining_amount }}&amp;addInfo={{ booking_id }}-{{ from_name }}&amp;accountName={{ account_name }}" alt="QR Code" />
+                        <p>{{ bank_name }}<br/>{{ account_no }}<br/>{{ bank_branch }}<br/>{{ account_owner }}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p><i>Call the hotline for more information</i></p>
+        <table>
+            <tr>
+                <td>Passiogolf Sign:</td>
+                <td>Customer Sign:</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
