@@ -131,31 +131,31 @@
             <td>{{ item.group }}</td>
             <td>{{ item.quantity }}</td>
             <td>{{ item.unit }}</td>
-            <td>{{ item.unit_price }}</td>
-            <td>{{ item.total_price }}</td>
+            <td>{{ item.unit_price }} {{currency}}</td>
+            <td>{{ item.total_price }} {{currency}}</td>
           </tr>
           {% endfor %}
           <!-- ... [other parts of the invoice] ... -->
           <tr class="total-row">
             <td colspan="6" rowspan="6" class="remarks">Remarks: <br>{{ remarks }}</td>
             <th>Thành Tiền</th>
-            <td class="text-right">{{ thanh_tien }}</td>
+            <td class="text-right">{{ thanh_tien }} {{currency}}</td>
           </tr>
           <tr class="total-row">
             <th>Giảm Giá</th>
-            <td class="text-right">{{ giam_gia }}</td>
+            <td class="text-right">{{ giam_gia }} {{currency}}</td>
           </tr>
           <tr class="total-row">
             <th>VAT</th>
-            <td class="text-right">{{ vat }}</td>
+            <td class="text-right">{{ vat }} {{currency}}</td>
           </tr>
           <tr class="total-row">
             <th>Deposit</th>
-            <td class="text-right">{{ deposit }}</td>
+            <td class="text-right">{{ deposit }} {{currency}}</td>
           </tr>
           <tr class="total-row">
             <th>REMAINING</th>
-            <td class="text-right">{{ remaining }}</td>
+            <td class="text-right">{{ remaining }} {{currency}}</td>
           </tr>
         </tbody>
       </table>
