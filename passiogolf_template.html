@@ -1,37 +1,40 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 
   <head>
-    <meta http-equiv="Content-Type" 
-      content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Invoice {{ invoice_number }}</title>
+    <script type="text/javascript" nonce="d0f1e43269af434c8e35ffe197d" src="//local.adguard.org?ts=1713430319125&amp;type=content-script&amp;dmn=productionstage-hostingstack-serverbucket50ee8d24-18stefou6iti3.s3.amazonaws.com&amp;url=https%3A%2F%2Fproductionstage-hostingstack-serverbucket50ee8d24-18stefou6iti3.s3.amazonaws.com%2Fpassiogolf%2Findex.html%3FAWSAccessKeyId%3DASIAZDCUMOBD5WK6EV7W%26Signature%3DbmZquc%252BgRsTrJCOJOiHfMHK6ZvI%253D%26x-amz-security-token%3DIQoJb3JpZ2luX2VjELP%252F%252F%252F%252F%252F%252F%252F%252F%252F%252FwEaCXVzLWVhc3QtMSJHMEUCIFzZwJzbJGw%252BP4Ng6pb5YNKJPIAMe7puAml6nOnHReSGAiEA8xS94Y0onuKNjALtmB92wT6a4GYia82OM0WbFs0vUzoqiwMI6%252F%252F%252F%252F%252F%252F%252F%252F%252F%252F%252FARACGgw2MjUwOTQ3MTc1MTEiDJQQxa5uUYdBTRIAUCrfAt2J%252BFNVhk%252FeF6pB0AqW9n%252FGbV7Ra2I4XwNvy1LA2YtWR5n0PShrIookwJZt0eQskanUWcAn%252BT3PS1yMkeH23Rz27fNGY7hmihB85f%252BnknF7WeragNTyuVyH%252F9F81IgOLBw4a0E7zpep1DjvXqNMEOWp94u0q%252FZc7kNY0eKD8ucsvdNENrqQi6pffew6cBw7tAoX9Uut7gFNYWZdXCsQu8WEAtcvC8kC30AfMXc%252BY1LUSFazKRQslpCgWiMYH5DmzpJi9jxKTlxGu7qd%252BzYnmipXsP5dIysFEZM01dU0cmFloIM1T0CLHwHQVByndc%252B%252BQdbVi4A2Zwo6G4RYTFZjSl18ElDxKEM8OuUoP4AY0tdr9e7uhv6W13rUyg0zZacPTJ4KWFJe%252FmkJoq2B9KAF%252FBenD3O3%252BoUQPdyw1T%252FGSOlMV%252BQqJCyRM9B20xFZxccibKkHmaHQHrAiRDeDW86xHzCo4YOxBjqeAbbV7BSo2SynmnBAUZrztGa4lhu2ykR30lxmwWAk8vZBqyByqHIqOR52L0jAcIn%252FqjrggKMrwwXXJAP9stex7hQlndlzr%252FH6w%252BeosrPkA%252Bs3l0zzpLtZf1THl1nFBVQS1a%252FBT5DSL3ygIpIq2Qpxp4ebFB530af9wneMyZi3ZkOn95B88gJs5RGbxOXDM7PHjt0z7tdTgOhSv9N0cA5I%26Expires%3D1713441224&amp;app=chrome.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script>
+    <script type="text/javascript" nonce="d0f1e43269af434c8e35ffe197d" src="//local.adguard.org?ts=1713430319125&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"></script><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        @page {
-          size:a4;
+      @import url("unicode.css") print;
+      
+      @page {
+        size:a4;
 
-          @frame {
-              top:0.5cm;
-              left:0.5cm;
-              right:0.5cm;
-              bottom:0.5cm;
-          }
+        @frame {
+            top:0cm;
+            left:0cm;
+            right:0cm;
+            bottom:0cm;
+        }
 
-          @frame header {
-              -pdf-frame-content:header;
-              top:0.5cm;
-              left:0.5cm;
-              right:0.5cm;
-              height:0.5cm;
-          }
+        @frame header {
+            -pdf-frame-content:header;
+            top:0cm;
+            left:0cm;
+            right:0cm;
+            height:0cm;
+        }
 
-          @frame footer {
-              -pdf-frame-content:footer;
-              bottom:0.5cm;
-              left:0.5cm;
-              right:0.5cm;
-              height:0.5cm;
-          }
+        @frame footer {
+            -pdf-frame-content:footer;
+            bottom:0cm;
+            left:0cm;
+            right:0cm;
+            height:0cm;
+        }
       }
       body {
         font-family: 'Roboto', sans-serif;
@@ -123,7 +126,7 @@
                       <div style="line-height: 1.4; font-size: 18pt; font-weight: bold;">
                           <span style="vertical-align: middle;">{{ title }}</span>
                       </div>
-                      <div style="line-height: 1.0; font-size: 8pt; font-weight: bold;">
+                      <div style="line-height: 1.2; font-size: 8pt; font-weight: bold;">
                           No.: #{{ booking_id }}
                       </div>
                   </th>
@@ -131,13 +134,13 @@
                       <img src="{{logo.url}}" alt="{{logo.alt}}" style="width: 90px;" />
                   </th>
                   <th colspan="3" style="padding: 8px; text-align: right;border-left: none;">
-                      <div style="line-height: 1.0; font-size: 8pt; font-weight: bold;">
+                      <div style="line-height: 1.2; font-size: 8pt; font-weight: bold;">
                           Date: {{ created }}
                       </div>
-                      <div style="line-height: 1.0; font-size: 8pt; font-weight: bold;">
+                      <div style="line-height: 1.2; font-size: 8pt; font-weight: bold;">
                           Hotline: {{ hotline }}
                       </div>
-                      <div style="line-height: 1.0; font-size: 8pt; font-weight: bold;">
+                      <div style="line-height: 1.2; font-size: 8pt; font-weight: bold;">
                           Ref: #{{ invoice_number }}
                       </div>
                   </th>
@@ -182,8 +185,11 @@
             {% endfor %}
             <!-- ... [other parts of the invoice] ... -->
             <tr class="total-row">
-              <td colspan="6" rowspan="5" class="remarks" style="font-weight:normal;">
-                <b>Remarks: </b><br><i>{{ remarks }}</i>
+              <td rowspan="2" class="remarks" style="font-weight:normal;">
+                <b>Remarks</b>
+              </td>
+              <td colspan="5" rowspan="2" class="remarks" style="font-weight:400;">
+                <i>{{ remarks }}</i>
               </td>
               <th>Grand Total</th>
               <td class="text-right">{{ thanh_tien }} {{ currency }}</td>
@@ -193,6 +199,16 @@
               <td class="text-right">{{ giam_gia }} {{ currency }}</td>
             </tr>
             <tr class="total-row">
+              <td rowspan="3" class="remarks" style="font-weight:normal;">
+                <b>Payment</b>
+              </td>
+              <td colspan="5" rowspan="3" class="remarks" style="font-weight:normal;">
+                <ul>
+                    {% for term in terms_conditions %}
+                    <li>{{ term }}</li>
+                    {% endfor %}
+                  </ul>
+              </td>
               <th>VAT</th>
               <td class="text-right">{{ vat }} {{ currency }}</td>
             </tr>
@@ -204,59 +220,32 @@
               <th>REMAINING</th>
               <td class="text-right">{{ remaining }} {{ currency }}</td>
             </tr>
-          </tbody>
-        </table>
-      </div>
-      <br>
-      <div class="invoice-box">
-        <table>
-          <thead>
-            <tr class="heading">
-              <th>Notice Period</th>
-              <th>Cancellation Charge</th>
-              <th>Scan QR Code</th>
-            </tr>
-          </thead>
-          <!-- Implement these rows as needed -->
-          <tbody>
-            <tr>
-              <td>Notice Period</td>
-              <td>Cancellation Charge</td>
-              <td style="max-width: 150px;">
-                <table style="border-collapse: collapse;">
-                  <tr>
-                    <td style="max-width: 128px; border: none;">
-                      <img style="width:100%;height:auto;" src="https://img.vietqr.io/image/{{ account.bankid }}-{{ account.no }}-evpMRRX.jpg?amount={{ remaining }}&addInfo={{ booking_id }}" alt="QR Code" />
-                    </td>
-                    <td style="width: auto; border: none;">
-                      <p>{{ account.name }}<br>
-                        {{ account.no }}<br>
-                        {{ account.bank }}<br>
-                        {{ account.description }}</p>
-                    </td>
-                  </tr>
-                </table>
-              </td>
+            <tr class="total-row">
+                <td class="remarks">
+                  <b>Payment</b>
+                </td>
+                <td colspan="5" class="remarks">
+                  <ul>
+                    <li>{{ account.name }}</li>
+                    <li>{{ account.no }}</li>
+                    <li>{{ account.bank }}</li>
+                    <li>{{ account.description }}</li>
+                  </ul>
+                </td>
+                <td colspan="2" class="remarks">
+                  <div style="text-align: center; margin-top: 20px;">
+                      <img src="https://img.vietqr.io/image/{{ account.bankid }}-{{ account.no }}-evpMRRX.jpg?amount={{ remaining }}&addInfo={{ booking_id }}" alt="QR Code" style="width: 128px; height: auto;">
+                      <p>Scan to pay</p>
+                  </div>
+                </td>
             </tr>
           </tbody>
-        </table>
-        <!-- Confirmation Section -->
-        <p>
-          <i style="font-size:10px">{{note}}</i>
-        </p>
-
-
-        <table>
-          <tr style="height:100px">
-            <td>Passiogolf Sign:</td>
-            <!-- Implement signing logic or image placeholder -->
-            <td>Customer Sign:</td>
-            <!-- Implement signing logic or image placeholder -->
-          </tr>
+          <tfoot style="">
+            
+          </tfoot>
         </table>
       </div>
     </div>
-
   </body>
 
 </html>
